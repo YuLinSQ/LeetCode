@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        int rarr[26];
+        int marr[26];
+        for(int i=0; i<26; i++)
+        {
+            rarr[i]=0;
+            marr[i]=0;
+        }
+        for(int i=0; i<ransomNote.length(); i++)
+        {
+            rarr[int(ransomNote[i])-97]++;
+        }
+        for(int i=0; i<magazine.length(); i++)
+        {
+            marr[int(magazine[i])-97]++;
+        }
+        for(int i=0; i<26; i++)
+        {
+            if(marr[i]<rarr[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};

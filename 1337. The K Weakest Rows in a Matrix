@@ -1,0 +1,41 @@
+class Solution {
+public:
+    vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
+        int rows=mat.length();
+        int col=mat[0].length();
+        vector<int> vec(rows);
+        vector<int> ans(k);
+        int temp;
+        int ind=-1;
+        int count=0;
+        int max=-1;
+        bool check;
+        for(int i=0; i<rows; i++)
+        {
+            vec[i]=0;
+            for(int j=0; j<col; j++)
+            {
+                if(mat[i][j]==1)
+                {
+                    vec[i]++;
+                }
+            }
+            if(vec[i]>max)
+            {
+                max=vec[i];
+                ind=i;
+            }
+        }
+        max++;
+        check=false;
+        while(count!=k)
+        {
+            temp=max;
+            for(int i=0; i<rows; i++)
+            {
+                if(vec[i]<temp)
+            }
+        }
+        return ans;
+    }
+};

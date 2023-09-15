@@ -1,14 +1,15 @@
 class Solution {
 public:
     vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
-        int rows=mat.length();
-        int col=mat[0].length();
+        int rows=mat.size();
+        int col=mat[0].size();
         vector<int> vec(rows);
         vector<int> ans(k);
         int temp;
         int ind=-1;
         int count=0;
         int max=-1;
+        int num=0;
         bool check;
         for(int i=0; i<rows; i++)
         {
@@ -23,18 +24,34 @@ public:
             if(vec[i]>max)
             {
                 max=vec[i];
-                ind=i;
             }
         }
         max++;
-        check=false;
-        while(count!=k)
+        while(num<k)
         {
             temp=max;
+            ind=max;
             for(int i=0; i<rows; i++)
             {
+                check=true;
                 if(vec[i]<temp)
+                {
+                    for(int j=0; j<num; j++)
+                    {
+                        if(i==ans[j])
+                        {
+                            check=false;
+                        }
+                    }
+                    if(check==true)
+                    {
+                        temp=vec[i];
+                        ind=i;
+                    }
+                }
             }
+            ans[num]=ind;
+            num++;
         }
         return ans;
     }

@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> ans(2);
+        bool check=true;
+        int temp1;
+        int i=0;
+        int j=0;
+        while(check)
+        {
+            j++;
+            //cout<<j<<" ";
+            if(j>=nums.size())
+            {
+                i++;
+                j=i;
+            }
+            else if((nums[i]+nums[j])==target)
+            {
+                ans[0]=i;
+                ans[1]=j;
+                check=false;
+            }
+        }
+        return ans;
+    }
+};

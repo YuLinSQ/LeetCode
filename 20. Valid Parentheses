@@ -2,11 +2,32 @@ class Solution {
 public:
     bool isValid(string s) {
         stack<char> a;
-        bool  ans=true;
         for(int i=0; i<s.size(); i++)
         {
-            if(s[i]==)
+            if(s[i]=="(")
+            {
+                a.push("(");
+            }
+            else if(s[i]=="{")
+            {
+                a.push("{");
+            }
+            else if(s[i]=="[")
+            {
+                a.push("[");
+            }
+            else if(s[i]==")")
+            {
+                if(a.top=="(")
+                {
+                    a.pop();
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
-        return ans;
+        return a.empty();
     }
 };

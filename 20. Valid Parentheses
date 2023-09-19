@@ -4,21 +4,47 @@ public:
         stack<char> a;
         for(int i=0; i<s.size(); i++)
         {
-            if(s[i]=="(")
+            if(s[i]=='(')
             {
-                a.push("(");
+                a.push('(');
             }
-            else if(s[i]=="{")
+            else if(s[i]=='{')
             {
-                a.push("{");
+                a.push('{');
             }
-            else if(s[i]=="[")
+            else if(s[i]=='[')
             {
-                a.push("[");
+                a.push('[');
             }
-            else if(s[i]==")")
+            else if(a.empty())
             {
-                if(a.top=="(")
+                return false;
+            }
+            else if(s[i]==')')
+            {
+                if(a.top()=='(')
+                {
+                    a.pop();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if(s[i]=='}')
+            {
+                if(a.top()=='{')
+                {
+                    a.pop();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if(s[i]==']')
+            {
+                if(a.top()=='[')
                 {
                     a.pop();
                 }

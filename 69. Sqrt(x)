@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int mySqrt(int x) {
+        unsigned int check=1;
+        while(check*check<=x)
+        {
+            check++;
+        }
+        check--;
+        return check;
+    }
+    //can be improved with binary search (1+x)/2 repeated
+};

@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        // digits[digits.size()-1]=digits[digits.size()-1]+1;
+        int check=digits.size()-1;
+        while(digits[check]==9)
+        {
+            digits[check]=0;
+            check--;
+            if(check<0)
+            {
+                digits.push_back(0);
+                check++;
+            }
+        }
+        digits[check]++;
+        return digits;
+    }
+};

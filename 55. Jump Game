@@ -1,0 +1,24 @@
+class Solution(object):
+    def canJump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        
+        a = 0
+        while ((a)<(len(nums))):
+            print(a, a+nums[a], len(nums))
+            if((a+nums[a])>=(len(nums))-1):
+                return True
+            b = -1
+            c = -1
+            if(nums[a]==0):
+                return False
+            for i in range(1, nums[a]+1):
+                if b<nums[a+i]+i:
+                    b = nums[a+i]+i
+                    c = a+i
+            if(c < 1):
+                return False
+            a = c
+        return True

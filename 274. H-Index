@@ -1,0 +1,19 @@
+class Solution(object):
+    def hIndex(self, citations):
+        """
+        :type citations: List[int]
+        :rtype: int
+        """
+
+        prev = -1
+        check = False
+        h=len(citations)-1
+        while check:
+            count = 0
+            for i in range (len(citations)):
+                if citations[i]>=h:
+                    count+=1
+            if count>=h:
+                
+        return h
+        

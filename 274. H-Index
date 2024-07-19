@@ -5,15 +5,44 @@ class Solution(object):
         :rtype: int
         """
 
-        prev = -1
-        check = False
-        h=len(citations)-1
-        while check:
+        upper = len(citations)
+        lower = 0
+        if upper == 0:
+            if citations[0] == 0:
+                return 0
+            else:
+                return 1
+        h = (len(citations)-1)/2
+        while True:
+            print(h)
             count = 0
             for i in range (len(citations)):
                 if citations[i]>=h:
                     count+=1
             if count>=h:
-                
-        return h
+                if(h+1 == upper):
+                    count = 0
+                    for i in range (len(citations)):
+                        if citations[i]>=upper:
+                            count+=1
+                    print(count)
+                    if(count>=upper):
+                        return upper
+                    elif(count>h):
+                        return count
+                    return h
+                lower = h
+                h = (h+upper)/2
+            else:
+                if(h-1 == lower):
+                    count = 0
+                    for i in range (len(citations)):
+                        if citations[i]>=lower:
+                            count+=1
+                    if(count>=lower):
+                        return lower
+                    else:
+                        return h
+                upper = h
+                h = (h+lower)/2
         

@@ -1,0 +1,26 @@
+class Solution(object):
+    def canCompleteCircuit(self, gas, cost):
+        """
+        :type gas: List[int]
+        :type cost: List[int]
+        :rtype: int
+        """
+        
+        totgas = 0
+        totcost = 0
+        n = len(gas)
+        for i in range(n):
+            totgas+=gas[i]
+        for i in range(n):
+            totcost+=cost[i]
+        if(totcost>totgas):
+            return -1
+        
+        curgas = 0
+        ind = 0
+        for i in range(n):
+            curgas += gas[i]-cost[i]
+            if curgas<0:
+                curgas = 0
+                ind = i+1
+        return ind

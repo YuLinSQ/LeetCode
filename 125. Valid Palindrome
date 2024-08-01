@@ -1,0 +1,28 @@
+class Solution(object):
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        print(s)
+        i = 0
+        j = len(s)-1
+        while i<j:
+            print(i)
+            print(j)
+            a = -1
+            b = -1
+            if((47<ord(s[i])<58) or (64<ord(s[i])<91) or (96<ord(s[i])<123)):
+                a = ord(s[i].lower())
+            if((47<ord(s[j])<58) or (64<ord(s[j])<91) or (96<ord(s[j])<123)):
+                b = ord(s[j].lower())
+            if(a == -1):
+                i+=1
+            if(b == -1):
+                j-=1
+            if((a != -1) and (b != -1)):
+                if(a != b):
+                    return False
+                i+=1
+                j-=1
+        return True

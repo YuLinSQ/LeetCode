@@ -1,0 +1,20 @@
+class Solution(object):
+    def isIsomorphic(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        
+        arr = [None] * 26
+        a = [False] * 26
+        for i in range (len(t)):
+            print(arr[ord(s[i])-97])
+            if arr[ord(s[i])-97] == None:
+                if a[ord(t[i])-97] != False:
+                    return False
+                arr[ord(s[i])-97] = ord(t[i])-97
+                a[ord(t[i])-97] = True
+            elif arr[ord(s[i])-97] != ord(t[i])-97:
+                return False
+        return True

@@ -1,0 +1,33 @@
+class Solution(object):
+    def wordPattern(self, pattern, s):
+        """
+        :type pattern: str
+        :type s: str
+        :rtype: bool
+        """
+        
+        arr = ["False"]*len(pattern)
+        a = []
+        temp = ""
+        for i in range (len(s)):
+            if(s[i]!=" "):
+                temp+=s[i]
+            else:
+                a.append(temp)
+                temp = ""
+        if(temp!=""):
+            a.append(temp)
+        for i in range (len(pattern)):
+            if a[i] == False:
+                temp = pattern[i]
+                word = a[i]
+                for j in range (len(pattern)):
+                    if pattern[j] == temp:
+                        if a[j] == True:
+                            return False
+                        if word!=a[j]:
+                            return False
+                        a[i] = True
+        return True
+                
+                

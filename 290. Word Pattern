@@ -6,7 +6,7 @@ class Solution(object):
         :rtype: bool
         """
         
-        arr = ["False"]*len(pattern)
+        arr = [""]*len(pattern)
         a = []
         temp = ""
         for i in range (len(s)):
@@ -18,16 +18,16 @@ class Solution(object):
         if(temp!=""):
             a.append(temp)
         for i in range (len(pattern)):
-            if a[i] == False:
+            if arr[i] == "":
+                if a[i] in arr:
+                    return False
                 temp = pattern[i]
                 word = a[i]
                 for j in range (len(pattern)):
-                    if pattern[j] == temp:
-                        if a[j] == True:
-                            return False
-                        if word!=a[j]:
-                            return False
-                        a[i] = True
+                    if arr[j] == "":
+                        if pattern[j] == temp:
+                            if word!=a[j]:
+                                return False
+                            arr[j] = word
         return True
-                
-                
+        

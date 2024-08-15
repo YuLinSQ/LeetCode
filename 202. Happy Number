@@ -1,0 +1,21 @@
+class Solution(object):
+    def isHappy(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        
+        arr = []
+        num = n
+        while True:
+            temp = num
+            num = 0
+            while temp>0:
+                num = num+(temp%10)**2
+                temp = temp//10
+            if num == 1:
+                return True
+            if(num in arr):
+                print(arr, num)
+                return False
+            arr.append(num)

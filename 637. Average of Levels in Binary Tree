@@ -1,0 +1,30 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def loops(self, root, i, arr, count):
+        if root == None:
+            return 0
+        if i == len(arr):
+            count.append(0.00000)
+            arr.append(0.00000)
+        arr[i]+=root.val
+        count[i]+=1
+        self.loops(root.left, i+1, arr, count)
+        self.loops(root.right, i+1, arr, count)
+
+    
+    def averageOfLevels(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[float]
+        """
+        arr = []
+        count = []
+        self.loops(root, 0, arr, count)
+        for i in range (len(arr)):
+            arr[i]=arr[i]/count[i]
+        return arr

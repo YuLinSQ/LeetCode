@@ -1,0 +1,23 @@
+class Solution(object):
+    def searchInsert(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        i = 0
+        j = len(nums)-1
+        while i<j-1:
+            k = (i+j)//2
+            if nums[k]==target:
+                print("!")
+                return k
+            elif nums[k]>target:
+                j = k
+            else:
+                i = k
+        if target>nums[j]:
+            return j+1
+        if target<=nums[i]:
+            return i
+        return j

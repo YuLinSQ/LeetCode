@@ -1,0 +1,55 @@
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        
+        n = len(strs[0])
+        ans = []
+        temp = []
+        if "" in strs:
+            print("???")
+            strs.remove("")
+            temp.append("")
+            while "" in strs:
+                strs.remove("")
+                temp.append("")
+            ans.append(temp)
+            if len(strs) == 0:
+                return ans
+        elif n <= 1:
+            print("!")
+            return [strs]
+        hash = [None] * 26
+        for i in range(26):
+            hash[i] = [] * 26
+        for i in range (len(strs)):
+            for j in range (len(strs[i])):
+                hash[(ord((strs[i])[j])-97)].append(i)
+        i = 0
+        check = [None]*len(strs)
+        print(hash)
+        while i<len(strs):
+            if check[i] == None:
+                maybe = (hash[(ord((strs[i])[0])-97)])[:]
+                print(maybe)
+                for j in range (1,n):
+                    for k in range (len(maybe)):
+                        if maybe[k] not in (hash[(ord((strs[i])[j])-97)]):
+                            maybe[k] = None
+                            print(maybe)
+                    while None in maybe:
+                        # print("!", maybe)
+                        maybe.remove(None)
+                temp = []
+                # print(i, maybe)
+                for j in range (len(maybe)):
+                    temp.append(strs[maybe[j]])
+                    check[maybe[j]] = 1
+                print("!", check)
+                ans.append(temp)
+                maybe = []
+            i+=1
+        return ans
+            

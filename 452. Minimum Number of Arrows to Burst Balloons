@@ -21,3 +21,4 @@ class Solution(object):
             i+=1
         print(points)
         return len(points)
+

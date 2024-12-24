@@ -1,0 +1,23 @@
+class Solution(object):
+    def findMinArrowShots(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        points.sort(key=lambda x: x[0])
+        i = 0
+        while i < len(points)-1:
+            j = i+1
+            while j < len(points):
+                if points[j][0] > points[i][1]:
+                    j = len(points)
+                elif (points[j][0] <= points[i][0] <= points[j][1]) or (points[j][0] <= points[i][1] <= points[j][1]) or (points[i][0] <= points[j][0] and points[i][1] >= points[j][1]) or (points[i][0] >= points[j][0] and points[i][1] <= points[j][1]):
+                    points[i][0] = max(points[i][0], points[j][0])
+                    points[i][1] = min(points[i][1], points[j][1])
+                    points.pop(j)
+                    j = len(points)
+                    i-=1
+                j+=1
+            i+=1
+        print(points)
+        return len(points)

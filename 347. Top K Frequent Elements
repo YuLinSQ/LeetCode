@@ -22,3 +22,4 @@ class Solution(object):
 
         # Extract the top k keys from the heap
         return [key for _, key in min_heap]
+

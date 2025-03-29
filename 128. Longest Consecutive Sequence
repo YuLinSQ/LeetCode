@@ -4,46 +4,18 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
+        # referenced Prashanth Kumar
         if len(nums) <= 1:
             return len(nums)
-        nums.sort()
-        hash = []
-        ans = 0
-        low = float('inf')
-        for i in range (10):
-            hash.append([])
-        for i in range (len(nums)):
-            a = nums[i]%10
-            if nums[i] not in hash[a]:
-                hash[a].append(nums[i])
-            if low>nums[i]:
-                low = nums[i]
-        for i in range (10):
-            hash[i].sort()
-        prev = low - 1
-        count = 0
-        while len(nums) > 0:
-            if prev%10+1 == 10:
-                if len(hash[0])>0:
-                    curr = hash[0][0]
-                else:
-                    curr = prev
-            else:
-                if len(hash[prev%10+1])>0:
-                    curr = hash[prev%10+1][0]
-                else:
-                    curr = prev
-            if curr == prev+1:
-                count+=1
-                while curr in nums:
-                    nums.remove(curr)
-                hash[curr%10].remove(curr)
-            else:
-                if count>ans:
-                    ans = count
-                count = 0
-                curr = nums[0]-1
-            prev = curr
-        if count>ans:
-            ans = count
+        nums = set(nums)
+        ans = 1
+        count = 1
+        for x in nums:
+            if x-1 not in nums:
+                count = 1
+                temp = x
+                while x+1 in nums:
+                    x+=1
+                    count+=1
+                ans = max(count, ans)
         return ans

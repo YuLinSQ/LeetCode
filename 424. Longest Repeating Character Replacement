@@ -1,0 +1,33 @@
+class Solution(object):
+    def characterReplacement(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        # referenced codeinmotion
+        # time O(kn)
+        # space O(1)
+        ans = 0
+        hashmap = {}
+        maxFreq = 0
+        curLen = 0 
+        j = 0
+        for i in range (len(s)):
+            if s[i] in hashmap:
+                hashmap[s[i]] += 1
+            else:
+                hashmap[s[i]] = 1
+            maxFreq = max(hashmap.values())
+            curLen += 1
+            if curLen - maxFreq >k:
+                while curLen - maxFreq >k:
+                    hashmap[s[j]] -= 1
+                    if hashmap[s[j]] == 0:
+                        del hashmap[s[j]]
+                    j+=1
+                    curLen-=1
+                    maxFreq = max(hashmap.values())
+            if curLen > ans:
+                ans = curLen
+        return ans

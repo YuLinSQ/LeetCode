@@ -1,0 +1,39 @@
+class Solution(object):
+    def checkInclusion(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: bool
+        """
+        Len = len(s1)
+        Hash1 = {}
+        Hash2 = {}
+        if Len > len(s2):
+            return False
+        for i in range (Len):
+            if s1[i] in Hash1:
+                Hash1[s1[i]] += 1
+            else:
+                Hash1[s1[i]] = 1
+        for i in range (Len):
+            if s2[i] in Hash2:
+                Hash2[s2[i]] += 1
+            else:
+                Hash2[s2[i]] = 1
+        if Hash1 == Hash2:
+            return True
+        j = 0
+        print(Hash1)
+        for i in range (Len, len(s2)):
+            if s2[i] in Hash2:
+                Hash2[s2[i]] += 1
+            else:
+                Hash2[s2[i]] = 1
+            Hash2[s2[j]] -= 1
+            if Hash2[s2[j]] == 0:
+                del Hash2[s2[j]]
+            j += 1
+            print(Hash2)
+            if Hash1 == Hash2:
+                return True
+        return False

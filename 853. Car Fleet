@@ -1,0 +1,23 @@
+class Solution(object):
+    def carFleet(self, target, position, speed):
+        """
+        :type target: int
+        :type position: List[int]
+        :type speed: List[int]
+        :rtype: int
+        """
+        # referenced Hieroglyphs
+        stack = []
+        if not position:
+            return 0
+        arr = []
+        for i in range(len(position)):
+            arr.append([position[i], speed[i]])
+        arr.sort(key = lambda x:(x[0], x[1]), reverse = True)
+        dist = target - arr[0][0]
+        stack.append(float(dist)/float(arr[0][1]))
+        for i in range (1, len(arr)):
+            dist = target - arr[i][0]
+            if float(dist)/float(arr[i][1]) > stack[-1]:
+                stack.append(float(dist)/float(arr[i][1]))
+        return len(stack)

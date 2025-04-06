@@ -1,0 +1,21 @@
+class Solution(object):
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        a = 0
+        if len(matrix) == 0:
+            return False
+        while matrix[a][0] <= target:
+            a+=1
+            if a > len(matrix)-1:
+                break
+        a-=1
+        if a < 0:
+            return False
+        b = 0
+        if target in matrix[a]:
+            return True
+        return False

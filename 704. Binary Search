@@ -1,0 +1,20 @@
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        def b(nums, target, l, r):
+            mid = (l+r)/2
+            print(l, r)
+            if nums[mid] == target:
+                return mid
+            if l >= r:
+                return -1
+            if nums[mid] > target:
+                return b(nums, target, l, mid-1)
+            if nums[mid] < target:
+                return b(nums, target, mid+1, r)
+        
+        return b(nums, target, 0, len(nums)-1)

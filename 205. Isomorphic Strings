@@ -6,15 +6,15 @@ class Solution(object):
         :rtype: bool
         """
         
-        arr = [None] * 26
-        a = [False] * 26
-        for i in range (len(t)):
-            print(arr[ord(s[i])-97])
-            if arr[ord(s[i])-97] == None:
-                if a[ord(t[i])-97] != False:
-                    return False
-                arr[ord(s[i])-97] = ord(t[i])-97
-                a[ord(t[i])-97] = True
-            elif arr[ord(s[i])-97] != ord(t[i])-97:
+        hm1 = {}
+        hm2 = {}
+        for i in range (len(s)):
+            if s[i] not in hm1:
+                hm1[s[i]] = t[i]
+            elif hm1[s[i]] != t[i]:
+                return False
+            if t[i] not in hm2:
+                hm2[t[i]] = s[i]
+            elif hm2[t[i]] != s[i]:
                 return False
         return True

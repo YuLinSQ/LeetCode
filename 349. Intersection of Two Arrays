@@ -1,0 +1,20 @@
+class Solution(object):
+    def intersection(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[int]
+        """
+        map = {}
+        arr = []
+        for i in range (len(nums1)):
+            if nums1[i] not in map:
+                map[nums1[i]] = 1
+        for i in range (len(nums2)):
+            if nums2[i] in map:
+                map[nums2[i]] += 1
+        for i in map:
+            if map[i]>1:
+                arr.append(i)
+        return arr
+        

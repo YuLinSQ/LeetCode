@@ -9,3 +9,4 @@ class Solution(object):
             if i != nums[i]:
                 return i
         return len(nums)
+Note: can use XOR 0-n for optimal O(n) O(1) solution.

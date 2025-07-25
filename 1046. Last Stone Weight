@@ -1,0 +1,14 @@
+import heapq
+class Solution(object):
+    def lastStoneWeight(self, stones):
+        """
+        :type stones: List[int]
+        :rtype: int
+        """
+        if len(stones) == 0:
+            return 0
+        mheap = [-x for x in stones]
+        heapq.heapify(mheap)
+        while len(mheap) > 1:
+            heapq.heappush(mheap, heapq.heappop(mheap) - heapq.heappop(mheap))
+        return -mheap[0]

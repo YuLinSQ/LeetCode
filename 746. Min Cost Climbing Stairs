@@ -1,0 +1,14 @@
+class Solution(object):
+    def minCostClimbingStairs(self, cost):
+        """
+        :type cost: List[int]
+        :rtype: int
+        """
+        ans = [0, 0]
+        for i in range(0, len(cost)-1):
+            temp1 = ans[i+1] + cost[i+1]
+            temp2 = ans[i] + cost[i]
+            if temp1 > temp2:
+                temp1 = temp2
+            ans.append(temp1)
+        return ans[-1]

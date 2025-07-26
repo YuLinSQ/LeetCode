@@ -1,0 +1,15 @@
+class Solution(object):
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        hashm = {}
+        for i in range(len(nums)):
+            if nums[i] not in hashm:
+                hashm[nums[i]] = 1
+            else:
+                hashm[nums[i]]+=1
+        for i in range(len(nums)):
+            if hashm[nums[i]] == 1:
+                return nums[i]

@@ -1,0 +1,16 @@
+class Solution(object):
+    def hammingWeight(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        temp = 1
+        while temp < n:
+            temp = temp*2
+        ans = 0
+        while n != 0:
+            if temp <= n:
+                n = n - temp
+                ans+=1
+            temp = temp//2
+        return ans

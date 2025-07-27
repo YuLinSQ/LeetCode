@@ -1,0 +1,22 @@
+class Solution(object):
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) == 0:
+            return 0
+        if len(nums) < 4:
+            return max(nums)
+        arr = [nums[0]]
+        arr.append(max(nums[0], nums[1]))
+        for i in range (2, len(nums)-1):
+            arr.append(max(arr[i-1], arr[i-2]+nums[i]))
+
+        arr2 = [0, nums[1]]
+        arr2.append(max(nums[1], nums[2]))
+        for i in range (3, len(nums)):
+            arr2.append(max(arr2[i-1], arr2[i-2]+nums[i]))
+
+        print(arr, arr2)
+        return max(arr[-1], arr2[-1])

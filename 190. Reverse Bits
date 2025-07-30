@@ -1,0 +1,18 @@
+class Solution(object):
+    def reverseBits(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        temp = 2**31
+        arr = [0]*32
+        for j in range (31, -1, -1):
+            if temp<=n:
+                arr[j] = 1
+                n = n-temp
+            temp = temp/2
+        ans = 0
+        for j in range (31, -1, -1):
+            if arr[31-j] == 1:
+                ans += 2**(j)
+        return ans

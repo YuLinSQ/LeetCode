@@ -1,0 +1,30 @@
+class Solution(object):
+    def buddyStrings(self, s, goal):
+        """
+        :type s: str
+        :type goal: str
+        :rtype: bool
+        """
+        if len(s) != len(goal):
+            return False
+        temp1 = None
+        temp2 = None
+        for i in range (len(s)):
+            if s[i]!=goal[i]:
+                if temp1 == None:
+                    temp1 = s[i]
+                    temp2 = goal[i]
+                elif temp1 == goal[i] and temp2 == s[i]:
+                    if s[i+1:] == goal[i+1:]:
+                        return True
+                    return False
+                else:
+                    return False
+        if s == goal:
+            hm = {}
+            for i in range (len(s)):
+                if s[i] not in hm:
+                    hm[s[i]] = 1
+                else:
+                    return True
+        return False

@@ -1,0 +1,24 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: bool
+        """
+        def rec(root, smol, big):
+            if root == None:
+                return True
+            if root.val <= smol:
+                return False
+            if root.val >= big:
+                return False
+            return (rec(root.left, smol, root.val) and rec(root.right, root.val, big))
+        
+        return rec(root, float('-inf'), float('inf'))
+        
+        

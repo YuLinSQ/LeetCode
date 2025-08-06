@@ -1,0 +1,25 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def goodNodes(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        ans = []
+        ans.append(0)
+        def rec(root, maxi):
+            if root == None:
+                return
+            if root.val >= maxi:
+                maxi = root.val
+                ans[0]+=1
+            rec(root.left, maxi)
+            rec(root.right, maxi)
+        
+        rec(root, -float('inf'))
+        return ans[0]

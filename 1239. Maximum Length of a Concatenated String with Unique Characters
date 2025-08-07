@@ -1,0 +1,15 @@
+class Solution(object):
+    def maxLength(self, arr):
+        """
+        :type arr: List[str]
+        :rtype: int
+        """
+        dp = [""]
+        for i in range (len(arr)):
+            if len(arr[i]) == len(set(arr[i])):
+                string = arr[i]
+                for j in dp[:]:
+                    combo = j+arr[i]
+                    if len(set(combo)) == len(combo):
+                        dp.append(combo)
+        return max(len(s)for s in dp)

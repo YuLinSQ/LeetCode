@@ -1,0 +1,26 @@
+class Solution(object):
+    def wordBreak(self, s, wordDict):
+        """
+        :type s: str
+        :type wordDict: List[str]
+        :rtype: bool
+        """
+        arr = []
+        if s[0] in wordDict:
+            arr.append(True)
+        else:
+            arr.append(False)
+        for i in range (1, len(s)):
+            for j in wordDict:
+                if j == s[:i+1]:
+                    arr.append(True)
+                    break
+                if len(j)-1 <= i:
+                    if j == s[i-len(j)+1:i+1]:
+                        if arr[i-len(j)] == True:
+                            arr.append(True)
+                            break
+            if len(arr) == i:
+                arr.append(False)
+        print(arr)
+        return arr[-1]

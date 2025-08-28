@@ -1,0 +1,21 @@
+# referenced neetcode 150
+class Solution(object):
+    def canPartition(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        target = sum(nums)
+        if target % 2 != 0:
+            return False
+        target = target/2
+        arr = {0}
+        for i in nums:
+            newarr = set()
+            for j in arr:
+                if j+i == target:
+                    return True
+                newarr.add(j)
+                newarr.add(j+i)
+            arr = newarr
+        return False

@@ -1,0 +1,23 @@
+# referenced neetcode youtube
+class Solution(object):
+    def subarraysDivByK(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        ans = 0
+        psum = 0
+        hm = {}
+        hm[0] = 1
+
+        for n in nums:
+            psum += n
+            remain = psum % k
+            if remain in hm:
+                ans += hm[remain]
+            else:
+                hm[remain] = 0
+            hm[remain]+=1
+        return ans
+

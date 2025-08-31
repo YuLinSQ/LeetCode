@@ -1,0 +1,26 @@
+class Solution(object):
+    def convertTime(self, current, correct):
+        """
+        :type current: str
+        :type correct: str
+        :rtype: int
+        """
+        count = 0
+        a = int(current[-2:])
+        b = int(correct[-2:])
+        c = int(current[:2])
+        d = int(correct[:2])
+        arr = [15,5,1]
+        if b<a:
+            b += 60
+            c+=1
+        while b!=a:
+            for i in arr:
+                if a+i <= b:
+                    a+=i
+                    count+=1
+                    break
+        if d<c:
+            d+=24
+        count+=d-c
+        return count

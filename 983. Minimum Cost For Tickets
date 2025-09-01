@@ -1,0 +1,19 @@
+class Solution(object):
+    def mincostTickets(self, days, costs):
+        """
+        :type days: List[int]
+        :type costs: List[int]
+        :rtype: int
+        """
+        dp = [0]*(len(days)+1)
+        arr = [1,7,30]
+        for i in range (len(days)-1, -1, -1):
+            temp = float("inf")
+            for j in range (len(costs)):
+                k = 1
+                while i+k<len(days) and days[i]+arr[j] > days[i+k]:
+                    k+=1
+                if temp>costs[j]+dp[i+k]:
+                    temp = costs[j]+dp[i+k]
+            dp[i] = temp
+        return dp[0]

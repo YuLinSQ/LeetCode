@@ -24,3 +24,4 @@ class Solution(object):
             return dp[(i, buying)]
 
         return dfs(0, True)
+

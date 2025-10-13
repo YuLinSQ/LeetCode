@@ -1,0 +1,35 @@
+class Solution(object):
+    def orangesRotting(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        visit = set()
+        time = 0
+        fresh = 0
+        q = deque()
+        R = len(grid)
+        C = len(grid[0])
+        for r in range(R):
+            for c in range(C):
+                if grid[r][c] == 2:
+                    q.append((r,c))
+                if grid[r][c] == 1:
+                    fresh+=1
+        if q and fresh>0:
+            time-=1
+        while q and fresh>0:
+            for i in range(len(q)):
+                r,c = q.popleft()
+                if (r,c) not in visit and r>=0 and c>=0 and r<R and c<C and grid[r][c] != 0:
+                    visit.add((r,c))
+                    if grid[r][c] == 1:
+                        fresh-=1
+                    q.append((r+1,c))
+                    q.append((r-1,c))
+                    q.append((r,c+1))
+                    q.append((r,c-1))
+            time+=1
+        if fresh>0:
+            return -1
+        return time

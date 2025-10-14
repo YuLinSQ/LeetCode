@@ -1,0 +1,35 @@
+# referenced neetcode 150
+class Solution(object):
+    def pacificAtlantic(self, heights):
+        """
+        :type heights: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        pcan = set()
+        acan = set()
+        R = len(heights)
+        C = len(heights[0])
+
+        def dfs(r,c,visit,pheight):
+            if r<0 or c<0 or r==R or c==C or (r,c) in visit or pheight>heights[r][c]:
+                return
+            visit.add((r,c))
+            dfs(r+1,c,visit,heights[r][c])
+            dfs(r-1,c,visit,heights[r][c])
+            dfs(r,c+1,visit,heights[r][c])
+            dfs(r,c-1,visit,heights[r][c])
+
+        for r in range(R):
+            dfs(r,0,pcan,0)
+            dfs(r,C-1,acan,0)
+
+        for c in range(C):
+            dfs(0,c,pcan,0)
+            dfs(R-1,c,acan,0)
+
+        ans = []
+        for r in range(R):
+            for c in range(C):
+                if (r,c) in pcan and (r,c) in acan:
+                    ans.append([r,c])
+        return ans

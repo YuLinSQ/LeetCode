@@ -1,0 +1,39 @@
+class Solution(object):
+    def solve(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: None Do not return anything, modify board in-place instead.
+        """
+        R = len(board)
+        C = len(board[0])
+        if R<=2 or C<=2:
+            return board
+        visit = set()
+
+        def dfs(r,c,visit):
+            if r<0 or c<0 or r==R or c==C or (r,c) in visit or board[r][c] == "X":
+                return
+            visit.add((r,c))
+            dfs(r+1,c,visit)
+            dfs(r-1,c,visit)
+            dfs(r,c+1,visit)
+            dfs(r,c-1,visit)
+
+        for r in range(R):
+            if board[r][0] == "O":
+                dfs(r,0,visit)
+            if board[r][-1] == "O":
+                dfs(r,C-1,visit)
+
+        for c in range(C):
+            if board[0][c] == "O":
+                dfs(0,c,visit)
+            if board[-1][c] == "O":
+                dfs(R-1,c,visit)
+
+        for r in range(R):
+            for c in range(C):
+                if board[r][c] == "O" and (r,c) not in visit:
+                    board[r][c] = "X"
+                
+        return board

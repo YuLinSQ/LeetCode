@@ -1,0 +1,31 @@
+class Solution(object):
+    def canFinish(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: bool
+        """
+        hm = {}
+        visit = set()
+        for i in range(numCourses):
+            hm[i] = []
+        for i in range(len(prerequisites)):
+            hm[prerequisites[i][0]].append(prerequisites[i][1])
+        
+        def dfs(i):
+            if i in visit:
+                return False
+            if hm[i] == []:
+                return True
+            visit.add(i)
+            for j in hm[i]:
+                if not dfs(j):
+                    return False
+            visit.remove(i)
+            hm[i] = []
+            return True
+        
+        for i in range(numCourses):
+            if not dfs(i):
+                return False
+        return True

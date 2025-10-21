@@ -1,0 +1,32 @@
+class Solution:
+    def validTree(self, n: int, edges: List[List[int]]) -> bool:
+        hm = {}
+        for i in range(n):
+            hm[i] = []
+        for i in edges:
+            hm[i[0]].append(i[1])
+            hm[i[1]].append(i[0])
+        visit = set()
+        went = set()
+
+        def dfs(i, prev):
+            if hm[i] == []:
+                went.add(i)
+                return True
+            if i in visit:
+                return False
+            visit.add(i)
+            went.add(i)
+            for j in hm[i]:
+                if j != prev:
+                    if not dfs(j, i):
+                        return False
+            visit.remove(i)
+            hm[i] = []
+            return True
+        
+        if not dfs(0,-1):
+            return False
+        if len(went) != n:
+            return False
+        return True

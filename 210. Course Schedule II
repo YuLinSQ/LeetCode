@@ -1,0 +1,38 @@
+class Solution(object):
+    def findOrder(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: List[int]
+        """
+        hm = {}
+        visit = set()
+        went = set()
+        ans = []
+        for i in range(numCourses):
+            hm[i] = []
+        for i in range(len(prerequisites)):
+            hm[prerequisites[i][0]].append(prerequisites[i][1])
+        
+        def dfs(i):
+            if i in visit:
+                return False
+            if hm[i] == []:
+                if i not in went:
+                    went.add(i)
+                    ans.append(i)
+                return True
+            visit.add(i)
+            for j in hm[i]:
+                if not dfs(j):
+                    return False
+            visit.remove(i)
+            hm[i] = []
+            went.add(i)
+            ans.append(i)
+            return True
+        
+        for i in range(numCourses):
+            if not dfs(i):
+                return []
+        return ans

@@ -1,0 +1,15 @@
+class Solution(object):
+    def findKthLargest(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        maxheap = []
+        for i in nums:
+            maxheap.append(-i)
+        heapq.heapify(maxheap)
+        for i in range(k-1):
+            heapq.heappop(maxheap)
+        return -heapq.heappop(maxheap)
+        

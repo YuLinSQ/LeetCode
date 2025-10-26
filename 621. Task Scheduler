@@ -1,0 +1,37 @@
+# referenced neetcode 150
+class Solution(object):
+    def leastInterval(self, tasks, n):
+        """
+        :type tasks: List[str]
+        :type n: int
+        :rtype: int
+        """
+        maxheap = []
+        for i in range(26):
+            maxheap.append(0)
+        for i in tasks:
+            maxheap[ord(i)-65]-=1
+        time = 0
+        i = 0
+        while i != len(maxheap):
+            if maxheap[i] == 0:
+                maxheap = maxheap[:i]+maxheap[i+1:]
+                i-=1
+            i+=1
+        heapq.heapify(maxheap)
+        q = deque()
+        while maxheap or q:
+            time+=1
+            # print(maxheap, q, time)
+            if not maxheap:
+                time = q[0][1]
+                # print(time,1)
+            else:
+                temp = 1+heapq.heappop(maxheap)
+                if temp<0:
+                    q.append([temp, time+n])
+                # print(time,2)
+            if q and q[0][1] == time:
+                heapq.heappush(maxheap, q.popleft()[0])
+                # print(time,3)
+        return time

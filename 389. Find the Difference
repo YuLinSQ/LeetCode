@@ -1,0 +1,18 @@
+class Solution(object):
+    def findTheDifference(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        hm = {}
+        for i in s:
+            if i not in hm:
+                hm[i] = 0
+            hm[i]+=1
+        for i in t:
+            if i not in hm:
+                return i
+            hm[i]-=1
+            if hm[i] == -1:
+                return i

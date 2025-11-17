@@ -1,0 +1,21 @@
+# referenced neetcode150
+class Solution(object):
+    def myPow(self, x, n):
+        """
+        :type x: float
+        :type n: int
+        :rtype: float
+        """
+
+        def helper(a, b):
+            if a == 0:
+                return 0
+            if b == 0:
+                return 1
+            stuff = helper(a*a,b//2)
+            if b%2 == 0:
+                return stuff
+            else:
+                return stuff*a
+
+        return helper(x,n) if n >= 0 else 1 / helper(x,-n)

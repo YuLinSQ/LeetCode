@@ -1,0 +1,27 @@
+class Solution(object):
+    def multiply(self, num1, num2):
+        """
+        :type num1: str
+        :type num2: str
+        :rtype: str
+        """
+        if num1== "0" or num2 == "0":
+            return "0"
+        flip = 1
+        if num1[0] == "-":
+            num1 = num1[1:]
+            flip*-1
+        if num2[0] == "-":
+            num2 = num2[1:]
+            flip*-1
+        m = len(num1)
+        n = len(num2)
+        total = 0
+        for i in range(m):
+            for j in range(n):
+                total += int(num1[-(i+1)])*int(num2[-(j+1)])*pow(10,i+j)
+        if flip == -1:
+            total*=(-1)
+        return str(total)
+        
+        

@@ -1,0 +1,17 @@
+class Solution(object):
+    def setZeroes(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: None Do not return anything, modify matrix in-place instead.
+        """
+        arr = set()
+        m = len(matrix)
+        n = len(matrix[0])
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j] == 0:
+                    arr.add((i,j))
+        for i,j in arr:
+            matrix[i] = [0]*n
+            for k in range(m):
+                matrix[k][j] = 0

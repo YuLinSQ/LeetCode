@@ -1,0 +1,35 @@
+class Solution(object):
+    def findWords(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[str]
+        """
+        ans = []
+        r1 = "qwertyuiop"
+        r2 = "asdfghjkl"
+        r3 = "zxcvbnm"
+        r1=r1+r1.upper()
+        r2=r2+r2.upper()
+        r3=r3+r3.upper()
+        for i in words:
+            if i[0] in r1:
+                row = 1
+            elif i[0] in r2:
+                row = 2
+            else:
+                row = 3
+            for j in i:
+                check = True
+                if j in r1:
+                    temp = 1
+                elif j in r2:
+                    temp = 2
+                else:
+                    temp = 3
+                if row!=temp:
+                    check = False
+                    break
+            if check:
+                ans.append(i)
+        return ans
+                

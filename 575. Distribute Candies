@@ -1,0 +1,14 @@
+class Solution(object):
+    def distributeCandies(self, candyType):
+        """
+        :type candyType: List[int]
+        :rtype: int
+        """
+        n = len(candyType)//2
+        hm = {}
+        for i in candyType:
+            hm[i] = 0
+            if len(hm)>n:
+                return n
+        return len(hm)
+        # can also just convert it into a set for optimal solution

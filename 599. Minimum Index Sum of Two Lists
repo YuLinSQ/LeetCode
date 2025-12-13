@@ -1,0 +1,20 @@
+class Solution(object):
+    def findRestaurant(self, list1, list2):
+        """
+        :type list1: List[str]
+        :type list2: List[str]
+        :rtype: List[str]
+        """
+        hm = {}
+        arr = []
+        temp = float("inf")
+        for i in range(len(list1)):
+            hm[list1[i]] = i
+        for i in range(len(list2)):
+            if list2[i] in hm:
+                if hm[list2[i]]+i == temp:
+                    arr.append(list2[i])
+                elif hm[list2[i]]+i < temp:
+                    arr = [list2[i]]
+                    temp = hm[list2[i]]+i
+        return arr

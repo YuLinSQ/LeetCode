@@ -1,0 +1,18 @@
+class Solution(object):
+    def findLHS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        hm= {}
+        for i in nums:
+            if i not in hm:
+                hm[i] = 0
+            hm[i] +=1
+        ans = 0
+        for i in hm:
+            if i+1 in hm:
+                temp = hm[i] + hm[i+1]
+                if temp >ans:
+                    ans = temp
+        return ans

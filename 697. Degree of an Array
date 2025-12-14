@@ -1,0 +1,25 @@
+class Solution(object):
+    def findShortestSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        hm = {}
+        arr = []
+        count = 0
+        for j in range(len(nums)):
+            i = nums[j]
+            if i not in hm:
+                hm[i] = [0,j,j]
+            hm[i][0]+=1
+            hm[i][2] = j
+            if hm[i][0] > count:
+                arr = [i]
+                count = hm[i][0]
+            elif hm[i][0] == count:
+                arr.append(i)
+        ans = float("inf")
+        for k in arr:
+            if hm[k][2]-hm[k][1]+1 < ans:
+                ans = hm[k][2]-hm[k][1]+1
+        return ans

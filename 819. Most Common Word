@@ -1,0 +1,37 @@
+class Solution(object):
+    def mostCommonWord(self, paragraph, banned):
+        """
+        :type paragraph: str
+        :type banned: List[str]
+        :rtype: str
+        """
+        paragraph=paragraph.lower()
+        temp = ""
+        hm={}
+        ban = {}
+        for i in banned:
+            ban[i]=1
+        ban[""]=1
+        stop = [" ", ",", ".", "?", "!", ";", ":"]
+        for i in paragraph:
+            if i in stop:
+                if temp not in ban:
+                    if temp not in hm:
+                        hm[temp]=0
+                    hm[temp]+=1
+                temp = ""
+            else:
+                temp+=i
+        if temp!="":
+            if temp not in ban:
+                if temp not in hm:
+                    hm[temp]=0
+                hm[temp]+=1
+        ans=""
+        count=0
+        for i in hm:
+            if hm[i]>count:
+                count=hm[i]
+                ans=i
+        return ans
+        

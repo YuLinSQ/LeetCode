@@ -1,0 +1,17 @@
+class Solution(object):
+    def numJewelsInStones(self, jewels, stones):
+        """
+        :type jewels: str
+        :type stones: str
+        :rtype: int
+        """
+        ans = 0
+        hm = {}
+        for i in stones:
+            if i not in hm:
+                hm[i]=0
+            hm[i]+=1
+        for i in hm:
+            if i in jewels:
+                ans+=hm[i]
+        return ans

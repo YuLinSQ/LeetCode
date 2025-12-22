@@ -1,0 +1,37 @@
+class Solution(object):
+    def uncommonFromSentences(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: List[str]
+        """
+        hm = {}
+        temp = ""
+        for i in s1:
+            if i == " ":
+                if temp not in hm:
+                    hm[temp] = 0
+                hm[temp]+=1
+                temp = ""
+            else:
+                temp+=i
+        if temp not in hm:
+            hm[temp] = 0
+        hm[temp]+=1
+        temp = ""
+        for i in s2:
+            if i == " ":
+                if temp not in hm:
+                    hm[temp] = 0
+                hm[temp]+=1
+                temp = ""
+            else:
+                temp+=i
+        if temp not in hm:
+            hm[temp] = 0
+        hm[temp]+=1
+        ans = []
+        for i in hm:
+            if hm[i] == 1:
+                ans.append(i)
+        return ans

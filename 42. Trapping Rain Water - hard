@@ -1,0 +1,33 @@
+class Solution(object):
+    def trap(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        i = 1
+        j = 0
+        ans = 0
+        temp = 0
+        while i<len(height):
+            if i == j+1 and height[i]>=height[j]:
+                j+=1
+            elif height[i]>=height[j]:
+                for k in range(j+1, i):
+                    ans+=height[j] - height[k]
+                j = i
+                temp = 0
+            i+=1
+        ind = j
+        while ind != -1:
+            for k in range(j+1, ind):
+                temp = height[ind] - height[k]
+                if temp > 0:
+                    ans+=temp
+            j = ind
+            ind = -1
+            temp = 0
+            for k in range(j+1, len(height)):
+                if height[k] > temp:
+                    temp = height[k]
+                    ind = k
+        return ans

@@ -1,0 +1,12 @@
+class Solution:
+    def hasGroupsSizeX(self, deck: List[int]) -> bool:
+        import math
+        hm = {}
+        for i in deck:
+            if i not in hm:
+                hm[i] = 0
+            hm[i] += 1
+        temp = hm[deck[0]]
+        for i in hm:
+            temp = math.gcd(temp, hm[i])
+        return temp!=1

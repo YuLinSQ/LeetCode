@@ -1,0 +1,19 @@
+class Solution(object):
+    def getSumAbsoluteDifferences(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        sec = 0
+        for i in nums:
+            sec+=i
+        ans = []
+        fir = 0
+        n = len(nums)
+        for i in range(n):
+            temp = sec - (n-i)*nums[i]
+            temp+=(i*nums[i]) - fir
+            ans.append(temp)
+            fir+=nums[i]
+            sec-=nums[i]
+        return ans

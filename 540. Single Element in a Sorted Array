@@ -1,0 +1,22 @@
+class Solution(object):
+    def singleNonDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)-1
+        i, j = 0, n
+        while j>=i:
+            temp = (i+j)//2
+            if temp>0 and nums[temp-1] == nums[temp]:
+                if (temp-1)%2 == 1:
+                    j = temp-2
+                else:
+                    i = temp+1
+            elif temp<n and nums[temp+1] == nums[temp]:
+                if (temp+1)%2 == 1:
+                    i = temp+2
+                else:
+                    j = temp-1
+            else:
+                return nums[temp]

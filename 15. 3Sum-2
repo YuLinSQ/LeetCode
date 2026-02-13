@@ -1,0 +1,28 @@
+class Solution(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        hm = {}
+        for i in nums:
+            if i not in hm:
+                hm[i] = 0
+            hm[i]+=1
+        ans = set()
+        for i in range(len(nums)-2):
+            hm[nums[i]]-=1
+            if hm[nums[i]] == 0:
+                hm.pop(nums[i])
+            for j in range(i+1, len(nums)-1):
+                temp = -(nums[i]+nums[j])
+                if temp in hm:
+                    if temp != nums[j] or hm[temp]>1:
+                        ans.add(tuple(sorted([nums[i], nums[j], temp])))
+        arr = []
+        for i in ans:
+            temp = []
+            for j in i:
+                temp.append(j)
+            arr.append(temp)
+        return arr

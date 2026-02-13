@@ -1,0 +1,29 @@
+class Solution(object):
+    def colorTheArray(self, n, queries):
+        """
+        :type n: int
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        colors = [0]*n
+        ans = []
+        ans.append(0)
+        colors[queries[0][0]] = queries[0][1]
+        for i in range(1, len(queries)):
+            count = ans[i-1]
+            ind = queries[i][0]
+            c = queries[i][1]
+            if colors[ind] != c:
+                if colors[ind]!=0:
+                    if ind !=0 and colors[ind] == colors[ind-1]:
+                        count-=1
+                    if ind !=n-1 and colors[ind] == colors[ind+1]:
+                        count-=1
+                colors[ind] = c
+                if colors[ind]!=0:
+                    if ind !=0 and colors[ind] == colors[ind-1]:
+                        count+=1
+                    if ind !=n-1 and colors[ind] == colors[ind+1]:
+                        count+=1
+            ans.append(count)
+        return ans

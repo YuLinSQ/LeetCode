@@ -1,0 +1,29 @@
+class Solution(object):
+    def getResults(self, queries):
+        """
+        :type queries: List[List[int]]
+        :rtype: List[bool]
+        """
+        # use segment tree and bisect insert to make it within time limit
+        arr = []
+        ans = []
+        for i in queries:
+            if i[0] == 1:
+                arr.append(i[1])
+                arr.sort()
+            else:
+                lim = i[1]
+                size = i[2]
+                j = 0
+                k = 0
+                check = False
+                while k<len(arr) and arr[k] < lim:
+                    if arr[k]-j >= size:
+                        check = True
+                        break
+                    j = arr[k]
+                    k+=1
+                if lim-j >= size:
+                    check = True
+                ans.append(check)
+        return ans

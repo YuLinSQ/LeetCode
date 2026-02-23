@@ -1,0 +1,16 @@
+# referenced neetcode
+class Solution(object):
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        res = cursum = 0
+        hm = {0:1}
+        for num in nums:
+            cursum+=num
+            diff = cursum-k
+            res+=hm.get(diff, 0)
+            hm[cursum] = 1+hm.get(cursum, 0)
+        return res

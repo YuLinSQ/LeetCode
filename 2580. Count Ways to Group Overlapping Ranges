@@ -1,0 +1,22 @@
+class Solution(object):
+    def countWays(self, ranges):
+        """
+        :type ranges: List[List[int]]
+        :rtype: int
+        """
+        ranges.sort()
+        low, high = None, None
+        count = 0
+        for i in ranges:
+            if low == None:
+                low = i[0]
+                high = i[1]
+            if (i[0] >= low and i[0] <= high) or (i[1] >= low and i[1] <= high):
+                low = min(low, i[0])
+                high = max(high, i[1])
+            else:
+                count+=1
+                low, high = i[0], i[1]
+        if low != None:
+            count+=1
+        return (2**count) % (10**9+7)

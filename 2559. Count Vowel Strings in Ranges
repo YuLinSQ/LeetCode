@@ -1,0 +1,23 @@
+class Solution(object):
+    def vowelStrings(self, words, queries):
+        """
+        :type words: List[str]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        boo = []
+        s = {'a', 'e', 'i', 'o', 'u'}
+        count = 0
+        for i in words:
+            if i[0] in s and i[-1] in s:
+                count+=1
+            boo.append(count)
+        ans = []
+        for i in queries:
+            ans.append(boo[i[1]] - boo[i[0]])
+            if i[0] == 0:
+                if boo[i[0]] == 1:
+                    ans[-1]+=1
+            elif boo[i[0]] > boo[i[0]-1]:
+                ans[-1]+=1
+        return ans

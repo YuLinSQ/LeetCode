@@ -1,0 +1,36 @@
+class Solution(object):
+    def largestInteger(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        hm = {}
+        for i in range(0,10):
+            hm[i] = 0
+        num = str(num)
+        temp = ""
+        for i in num:
+            hm[int(i)]+=1
+            temp = temp+str(int(i)%2)
+        for i in range(1,10):
+            if hm[i] == 0:
+                hm.pop(i)
+        ans = ""
+        even = 8
+        odd = 9
+        for i in temp:
+            if i == "0":
+                while even not in hm:
+                    even-=2
+                ans+=str(even)
+                hm[even]-=1
+                if hm[even] == 0:
+                    hm.pop(even)
+            else:
+                while odd not in hm:
+                    odd-=2
+                ans+=str(odd)
+                hm[odd]-=1
+                if hm[odd] == 0:
+                    hm.pop(odd)
+        return int(ans)

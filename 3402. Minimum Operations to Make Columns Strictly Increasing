@@ -1,0 +1,16 @@
+class Solution(object):
+    def minimumOperations(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        count = 0
+        for i in range(len(grid[0])):
+            temp = grid[0][i]-1
+            for j in range(len(grid)):
+                temp+=1
+                if temp>=grid[j][i]:
+                    count+=temp-grid[j][i]
+                else:
+                    temp = grid[j][i]
+        return count

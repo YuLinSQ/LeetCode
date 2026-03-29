@@ -1,0 +1,28 @@
+class Solution(object):
+    def minSwaps(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        l = len(nums)
+        j = 0
+        for i in range(l):
+            if nums[i] == 1:
+                j+=1
+            nums.append(nums[i])
+        total = j
+        count = 0
+        for i in range(j):
+            if nums[i] == 1:
+                count+=1
+        most = count
+        j-=1
+        for i in range(l):
+            if nums[i] == 1:
+                count-=1
+            j+=1
+            if nums[j] == 1:
+                count+=1
+            if count>most:
+                most = count
+        return total-most

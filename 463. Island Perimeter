@@ -1,0 +1,38 @@
+class Solution(object):
+    def islandPerimeter(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        visit = {}
+        i,j = -1,-1
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                if grid[r][c] == 1:
+                    i,j = r,c
+                    break
+            if i!=-1:
+                break
+        
+        def dfs(r,c):
+            if r<0 or r == len(grid) or c<0 or c == len(grid[0]) or (r,c) in visit or grid[r][c] == 0:
+                return
+            visit[(r,c)] = 4
+            if r+1 != len(grid) and grid[r+1][c] == 1:
+                visit[(r,c)]-=1
+            dfs(r+1,c)
+            if r != 0 and grid[r-1][c] == 1:
+                visit[(r,c)]-=1
+            dfs(r-1,c)
+            if c+1 != len(grid[0]) and grid[r][c+1] == 1:
+                visit[(r,c)]-=1
+            dfs(r,c+1)
+            if c != 0 and grid[r][c-1] == 1:
+                visit[(r,c)]-=1
+            dfs(r,c-1)
+
+        dfs(i,j)
+        res = 0
+        for r,c in visit:
+            res+=visit[(r,c)]
+        return res

@@ -1,0 +1,32 @@
+class Solution(object):
+    def longestMountain(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        res = 0
+        for i in range(len(arr)):
+            temp = 1
+            check = True
+            for j in range(i-1, -1, -1):
+                if arr[j+1]>arr[j]:
+                    temp+=1
+                    check = False
+                else:
+                    break
+            if check:
+                continue
+            check = True
+            for j in range(i+1, len(arr)):
+                if arr[j-1]>arr[j]:
+                    temp+=1
+                    check = False
+                else:
+                    break
+            if check:
+                continue
+            if temp>res:
+                res = temp
+        if res < 3:
+            return 0
+        return res

@@ -1,0 +1,24 @@
+class Solution(object):
+    def exclusiveTime(self, n, logs):
+        """
+        :type n: int
+        :type logs: List[str]
+        :rtype: List[int]
+        """
+        s = set()
+        ans = [0]*n
+        stack = []
+        ptime = 0
+        for i in logs:
+            parts = i.split(":")
+            ind = int(parts[0])
+            time = int(parts[2])
+            if parts[1] == "start":
+                if stack:
+                    ans[stack[-1]]+=time-ptime
+                stack.append(ind)
+            else:
+                ans[stack.pop()]+=time-ptime+1
+                time+=1
+            ptime = time
+        return ans

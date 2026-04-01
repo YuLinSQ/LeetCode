@@ -1,0 +1,16 @@
+class Solution(object):
+    def isAlienSorted(self, words, order):
+        """
+        :type words: List[str]
+        :type order: str
+        :rtype: bool
+        """
+        for i in range(len(words)-1):
+            k = 0
+            while k<len(words[i]) and k<len(words[i+1]) and words[i][k] == words[i+1][k]:
+                k+=1
+            if k == len(words[i+1]) and len(words[i]) > len(words[i+1]):
+                return False
+            if k<len(words[i]) and k<len(words[i+1]) and (order).index(words[i][k])>(order).index(words[i+1][k]):
+                return False
+        return True

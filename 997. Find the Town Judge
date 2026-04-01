@@ -1,0 +1,20 @@
+class Solution(object):
+    def findJudge(self, n, trust):
+        """
+        :type n: int
+        :type trust: List[List[int]]
+        :rtype: int
+        """
+        s = set()
+        hm = {}
+        for i in range(1,n+1):
+            s.add(i)
+            hm[i] = 0
+        for i,j in trust:
+            if i in s:
+                s.remove(i)
+            hm[j]+=1
+        for i in s:
+            if hm[i]==n-1:
+                return i
+        return -1

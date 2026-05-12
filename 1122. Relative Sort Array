@@ -1,0 +1,24 @@
+class Solution(object):
+    def relativeSortArray(self, arr1, arr2):
+        """
+        :type arr1: List[int]
+        :type arr2: List[int]
+        :rtype: List[int]
+        """
+        hm = {}
+        for i in arr1:
+            if i not in hm:
+                hm[i] = 0
+            hm[i]+=1
+        res = []
+        for i in arr2:
+            for j in range(hm[i]):
+                res.append(i)
+            hm.pop(i)
+        back = []
+        for i in hm:
+            for j in range(hm[i]):
+                back.append(i)
+        back.sort()
+        res = res + back
+        return res

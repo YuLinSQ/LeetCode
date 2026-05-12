@@ -1,0 +1,25 @@
+class Solution(object):
+    def commonChars(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[str]
+        """
+        res = {}
+        for i in words[0]:
+            if i not in res:
+                res[i] = 0
+            res[i]+=1
+        for i in range(1,len(words)):
+            hm = {}
+            for j in words[i]:
+                if j in res:
+                    if j not in hm:
+                        hm[j] = 0
+                    if hm[j] < res[j]:
+                        hm[j]+=1
+            res = hm
+        arr = []
+        for i in res:
+            for j in range(res[i]):
+                arr.append(i)
+        return arr

@@ -1,0 +1,22 @@
+class Solution(object):
+    def countBlackBlocks(self, m, n, coordinates):
+        """
+        :type m: int
+        :type n: int
+        :type coordinates: List[List[int]]
+        :rtype: List[int]
+        """
+        res = [0]*5
+        hm = {}
+        for r,c in coordinates:
+            for i in range(r-1,r+1):
+                for j in range(c-1,c+1):
+                    if i>-1 and j>-1 and i<m-1 and j<n-1:
+                        if (i,j) not in hm:
+                            hm[i,j] = 0
+                        hm[i,j]+=1
+        for temp in hm:
+            res[hm[temp]]+=1
+        count = (m-1)*(n-1)-len(hm)
+        res[0] = count
+        return res

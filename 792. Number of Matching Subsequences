@@ -1,0 +1,25 @@
+class Solution(object):
+    def numMatchingSubseq(self, s, words):
+        """
+        :type s: str
+        :type words: List[str]
+        :rtype: int
+        """
+        hm = {}
+        ans = 0
+        for i in range(ord("a"), ord("z")+1):
+            hm[chr(i)] = []
+        for i in range(len(words)):
+            hm[words[i][0]].append(i)
+        for i in s:
+            # print(words)
+            queue = hm.pop(i, [])
+            hm[i] = []
+            for j in queue:
+                words[j] = words[j][1:]
+                if len(words[j]) == 0:
+                    ans+=1
+                    continue
+                hm[words[j][0]].append(j)
+        return ans
+            

@@ -1,0 +1,28 @@
+class OrderedStream(object):
+
+    def __init__(self, n):
+        """
+        :type n: int
+        """
+        self.arr = [None]*n
+        self.ind = 0
+
+    def insert(self, idKey, value):
+        """
+        :type idKey: int
+        :type value: str
+        :rtype: List[str]
+        """
+        self.arr[idKey-1] = value
+        if self.ind == idKey-1:
+            temp = []
+            while self.ind!=len(self.arr) and self.arr[self.ind] != None:
+                temp.append(self.arr[self.ind])
+                self.ind+=1
+            return temp
+        return []
+
+
+# Your OrderedStream object will be instantiated and called as such:
+# obj = OrderedStream(n)
+# param_1 = obj.insert(idKey,value)

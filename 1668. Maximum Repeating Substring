@@ -1,0 +1,20 @@
+class Solution(object):
+    def maxRepeating(self, sequence, word):
+        """
+        :type sequence: str
+        :type word: str
+        :rtype: int
+        """
+        ans = 0
+        i = 0
+        n = len(word)
+        while i<len(sequence):
+            if sequence[i] == word[0]:
+                j = i
+                temp = 0
+                while j<len(sequence) and sequence[j:j+n] == word:
+                    temp+=1
+                    j+=n
+                ans = max(temp, ans)
+            i+=1
+        return ans

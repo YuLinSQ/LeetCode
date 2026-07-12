@@ -1,0 +1,26 @@
+class Solution(object):
+    def validSquare(self, p1, p2, p3, p4):
+        """
+        :type p1: List[int]
+        :type p2: List[int]
+        :type p3: List[int]
+        :type p4: List[int]
+        :rtype: bool
+        """
+        arr = []
+        arr.append((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2)
+        arr.append((p1[0]-p3[0])**2 + (p1[1]-p3[1])**2)
+        arr.append((p1[0]-p4[0])**2 + (p1[1]-p4[1])**2)
+        arr.append((p2[0]-p4[0])**2 + (p2[1]-p4[1])**2)
+        arr.append((p2[0]-p3[0])**2 + (p2[1]-p3[1])**2)
+        arr.append((p3[0]-p4[0])**2 + (p3[1]-p4[1])**2)
+        count = {}
+        for i in arr:
+            if i == 0:
+                return False
+            if i not in count:
+                count[i] = 0
+            count[i]+=1
+        if len(count) == 2:
+            return True
+        return False
